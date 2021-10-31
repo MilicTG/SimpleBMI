@@ -6,29 +6,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
-)
-
-private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
-
-private val LightColors = lightColors(
+private val LightColorsTheme = lightColors(
     primary = LightPrimaryColor,
     secondary = LightSecondaryColor,
     background = LightBackgroundColor,
@@ -41,7 +19,7 @@ private val LightColors = lightColors(
     onError = LightOnErrorColor
 )
 
-private val DarkColors = darkColors(
+private val DarkColorsTheme = darkColors(
     primary = DarkPrimaryColor,
     secondary = DarkSecondaryColor,
     background = DarkBackgroundColor,
@@ -55,17 +33,12 @@ private val DarkColors = darkColors(
 )
 
 @Composable
-fun SimpleBMITheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColors
-    } else {
-        LightColors
-    }
-
+fun BmiTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
     MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
+        colors = if (darkTheme) DarkColorsTheme else LightColorsTheme,
         content = content
     )
 }

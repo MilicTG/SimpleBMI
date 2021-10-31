@@ -7,17 +7,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import dev.milic.simplebmi.ui.theme.SimpleBMITheme
+import dev.milic.simplebmi.ui.theme.BmiTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SimpleBMITheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+            BmiTheme {
+                Surface(
+                    color = MaterialTheme.colors.surface
+                ) {
+                    Greeting(name = "Halid")
                 }
             }
         }
@@ -29,10 +29,3 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SimpleBMITheme {
-        Greeting("Android")
-    }
-}
