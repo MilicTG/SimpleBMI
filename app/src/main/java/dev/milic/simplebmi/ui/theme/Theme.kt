@@ -17,6 +17,7 @@ private val LightColorPalette = lightColors(
     primaryVariant = Purple700,
     secondary = Teal200
 
+
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -27,12 +28,38 @@ private val LightColorPalette = lightColors(
     */
 )
 
+private val LightColors = lightColors(
+    primary = LightPrimaryColor,
+    secondary = LightSecondaryColor,
+    background = LightBackgroundColor,
+    surface = LightSurfaceColor,
+    error = LightErrorColor,
+    onPrimary = LightOnPrimaryColor,
+    onSecondary = LightOnSecondaryColor,
+    onBackground = LightOnBackgroundColor,
+    onSurface = LightOnSurfaceColor,
+    onError = LightOnErrorColor
+)
+
+private val DarkColors = darkColors(
+    primary = DarkPrimaryColor,
+    secondary = DarkSecondaryColor,
+    background = DarkBackgroundColor,
+    surface = DarkSurfaceColor,
+    error = DarkErrorColor,
+    onPrimary = DarkOnPrimaryColor,
+    onSecondary = DarkOnSecondaryColor,
+    onBackground = DarkOnBackgroundColor,
+    onSurface = DarkOnSurfaceColor,
+    onError = DarkOnErrorColor
+)
+
 @Composable
 fun SimpleBMITheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {
-        DarkColorPalette
+        DarkColors
     } else {
-        LightColorPalette
+        LightColors
     }
 
     MaterialTheme(
