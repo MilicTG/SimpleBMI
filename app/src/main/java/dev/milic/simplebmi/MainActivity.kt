@@ -3,10 +3,12 @@ package dev.milic.simplebmi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import dev.milic.simplebmi.ui.theme.BmiTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +17,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             BmiTheme {
                 Surface(
-                    color = MaterialTheme.colors.surface
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
                 ) {
                     Greeting(name = "Halid")
                 }

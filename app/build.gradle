@@ -67,6 +67,9 @@ dependencies {
     //Compose Animated navigation
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompaist_version"
 
+    //SystemUiController
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompaist_version"
+
     //Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.39.1'
     kapt 'com.google.dagger:hilt-compiler:2.39.1'

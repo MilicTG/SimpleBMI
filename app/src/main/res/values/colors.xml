@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bottomNavColorLight">#FDFDFD</color>
+    <color name="bottomNavColorDark">#2B4C56</color>
+
+    <color name="statusBarColorLight">#FDFDFD</color>
+    <color name="statusBarColorDark">#2B4C56</color>
 </resources>
