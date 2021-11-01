@@ -54,7 +54,6 @@ fun BmiSplashScreen(
             text = "Splash",
             style = TextStyle(
                 fontSize = MaterialTheme.typography.h3.fontSize,
-                color = Color.Black
             )
         )
     }
