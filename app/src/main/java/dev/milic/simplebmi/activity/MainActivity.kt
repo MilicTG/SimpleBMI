@@ -3,39 +3,26 @@ package dev.milic.simplebmi.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.navigation.NavHostController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import dev.milic.simplebmi.navigation.SetupNavGraph
 import dev.milic.simplebmi.ui.theme.BmiTheme
 
+@ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             BmiTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting(name = "Halid")
-                }
+                navController = rememberAnimatedNavController()
+                SetupNavGraph(navController = navController)
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(
-        text = "Hello $name!",
-        style = TextStyle(
-            fontSize = MaterialTheme.typography.h4.fontSize
-        )
-
-    )
 }
 

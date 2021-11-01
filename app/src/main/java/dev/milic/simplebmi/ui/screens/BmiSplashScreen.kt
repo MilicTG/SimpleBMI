@@ -1,5 +1,6 @@
 package dev.milic.simplebmi.ui.screens
 
+import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -11,14 +12,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import dev.milic.simplebmi.navigation.BmiScreens
+import dev.milic.simplebmi.util.Constants.HOME_GRAPH_ROUTE
 import dev.milic.simplebmi.util.Constants.SPLASH_SCREEN_DELAY
 import kotlinx.coroutines.delay
 
 @Composable
 fun BmiSplashScreen(
-    navigateToCalculatorScreen: () -> Unit
+    navController: NavHostController
 ) {
     var startAnimation by remember { mutableStateOf(value = false) }
     val offsetState by animateDpAsState(
@@ -32,8 +37,11 @@ fun BmiSplashScreen(
 
     LaunchedEffect(key1 = true) {
         startAnimation = true
+        Log.d("ovde", "Jasta je")
         delay(SPLASH_SCREEN_DELAY)
-        navigateToCalculatorScreen()
+        navController.navigate(HOME_GRAPH_ROUTE) {
+            navController.popBackStack()
+        }
     }
 
     Box(
@@ -45,7 +53,8 @@ fun BmiSplashScreen(
         Text(
             text = "Splash",
             style = TextStyle(
-                fontSize = MaterialTheme.typography.h3.fontSize
+                fontSize = MaterialTheme.typography.h3.fontSize,
+                color = Color.Black
             )
         )
     }
