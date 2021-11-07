@@ -15,6 +15,8 @@ fun BmiIndicator() {
     val primaryColor = MaterialTheme.colors.primary
 
     Row(
+        modifier = Modifier
+            .padding(vertical = SMALL_PADDING),
         horizontalArrangement = Arrangement.Center
     ) {
         Canvas(

@@ -8,6 +8,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,11 +21,13 @@ import dev.milic.simplebmi.ui.components.BmiSmallInputCard
 import dev.milic.simplebmi.ui.components.BmiTopAppbar
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.SMALL_PADDING
+import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun BmiCalculatorScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    calculatorViewModel: CalculatorViewModel
 ) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -37,6 +41,9 @@ fun BmiCalculatorScreen(
             drawerState.close()
         }
     }
+
+    val ageValue = calculatorViewModel.ageCounter.observeAsState(initial = 0)
+    val weightValue = calculatorViewModel.weightCounter.observeAsState(initial = 0)
 
     Scaffold(
         topBar = {
@@ -75,15 +82,23 @@ fun BmiCalculatorScreen(
                 ) {
                     BmiSmallInputCard(
                         title = "Age",
-                        result = 45,
-                        onMinusButtonClicked = { /*TODO*/ },
-                        onPlusButtonClicked = {}
+                        result = ageValue.value,
+                        onMinusButtonClicked = {
+                            calculatorViewModel.decreaseAge()
+                        },
+                        onPlusButtonClicked = {
+                            calculatorViewModel.increaseAge()
+                        }
                     )
                     BmiSmallInputCard(
                         title = "Weight",
-                        result = 100,
-                        onMinusButtonClicked = { /*TODO*/ },
-                        onPlusButtonClicked = {}
+                        result = weightValue.value,
+                        onMinusButtonClicked = {
+                            calculatorViewModel.decreaseWeight()
+                        },
+                        onPlusButtonClicked = {
+                            calculatorViewModel.increaseWeight()
+                        }
                     )
                 }
             }
