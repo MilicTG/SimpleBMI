@@ -23,8 +23,8 @@ fun BmiSmallInputCard(
     Card(
         modifier = Modifier
             .widthIn(
-                min = 150.dp,
-                max = 300.dp
+                min = 160.dp,
+                max = 500.dp
             ),
         backgroundColor = MaterialTheme.colors.surface,
         elevation = CARD_ELEVATION
