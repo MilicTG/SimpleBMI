@@ -2,9 +2,7 @@ package dev.milic.simplebmi.ui.screens
 
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -17,7 +15,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.navigation.BmiScreens
 import dev.milic.simplebmi.ui.components.BmiSideDrawer
+import dev.milic.simplebmi.ui.components.BmiSmallInputCard
 import dev.milic.simplebmi.ui.components.BmiTopAppbar
+import dev.milic.simplebmi.ui.theme.LARGE_PADDING
+import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 import kotlinx.coroutines.launch
 
 @Composable
@@ -61,17 +62,30 @@ fun BmiCalculatorScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(fraction = 1f)
-                    .background(MaterialTheme.colors.background),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxSize()
+                    .background(MaterialTheme.colors.background)
+                    .padding(
+                        all = LARGE_PADDING
+                    ),
             ) {
-                Text(
-                    text = "Calculator",
-                    style = TextStyle(
-                        fontSize = MaterialTheme.typography.h3.fontSize,
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    BmiSmallInputCard(
+                        title = "Age",
+                        result = 45,
+                        onMinusButtonClicked = { /*TODO*/ },
+                        onPlusButtonClicked = {}
                     )
-                )
+                    BmiSmallInputCard(
+                        title = "Weight",
+                        result = 100,
+                        onMinusButtonClicked = { /*TODO*/ },
+                        onPlusButtonClicked = {}
+                    )
+                }
             }
         }
     }

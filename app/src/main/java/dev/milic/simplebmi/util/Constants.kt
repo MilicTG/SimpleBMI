@@ -9,5 +9,5 @@ object Constants {
     const val HOME_GRAPH_ROUTE = "home"
 
     //misc
-    const val SPLASH_SCREEN_DELAY = 3000L
+    const val SPLASH_SCREEN_DELAY = 1000L
 }
