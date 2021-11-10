@@ -14,7 +14,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.milic.simplebmi.ui.theme.CARD_ELEVATION
-import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.MEDIUM_PADDING
 import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 
@@ -49,7 +48,7 @@ fun BmiSmallInputCard(
             Text(
                 text = result.toString(),
                 style = TextStyle(
-                    fontSize = MaterialTheme.typography.h2.fontSize,
+                    fontSize = MaterialTheme.typography.h3.fontSize,
                     fontWeight = FontWeight(weight = 900)
                 )
             )
@@ -57,8 +56,8 @@ fun BmiSmallInputCard(
             Row(
                 modifier = Modifier
                     .widthIn(
-                        min = 150.dp,
-                        max = 500.dp
+                        min = 50.dp,
+                        max = 300.dp
                     )
                     .padding(
                         all = SMALL_PADDING

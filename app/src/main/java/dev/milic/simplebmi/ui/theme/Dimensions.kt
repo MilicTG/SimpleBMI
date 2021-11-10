@@ -8,7 +8,6 @@ val MEDIUM_PADDING = 12.dp
 val SMALL_PADDING = 8.dp
 val TINY_PADDING = 2.dp
 
-val CARD_ELEVATION = 12.dp
-val CARD_SIZE = 200.dp
+val CARD_ELEVATION = 8.dp
 
 val DRAWER_SPACER_SIZE = 8.dp

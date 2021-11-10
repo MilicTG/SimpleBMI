@@ -23,7 +23,7 @@ fun BmiIndicator() {
             modifier = Modifier
                 .padding(SMALL_PADDING)
                 .height(2.dp)
-                .width(100.dp)
+                .width(90.dp)
         ) {
             drawRoundRect(
                 color = primaryColor,

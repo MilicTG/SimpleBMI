@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.navigation.BmiScreens
+import dev.milic.simplebmi.ui.components.BmiHeightInputCard
 import dev.milic.simplebmi.ui.components.BmiSideDrawer
 import dev.milic.simplebmi.ui.components.BmiSmallInputCard
 import dev.milic.simplebmi.ui.components.BmiTopAppbar
@@ -101,6 +102,19 @@ fun BmiCalculatorScreen(
                         }
                     )
                 }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            vertical = LARGE_PADDING
+                        )
+                ) {
+                    BmiHeightInputCard(
+                        onValueChanged = {}
+                    )
+                }
+
+
             }
         }
     }

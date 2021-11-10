@@ -19,7 +19,9 @@ fun SetupNavGraph(
         startDestination = SPLASH_GRAPH_ROUTE,
         route = ROOT_GRAPH_ROUTE
     ) {
-        splashNavGraph(navController = navController)
+        splashNavGraph(
+            navController = navController
+        )
         homeNavGraph(
             navController = navController,
             calculatorViewModel = calculatorViewModel
