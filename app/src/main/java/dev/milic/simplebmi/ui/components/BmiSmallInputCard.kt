@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.layoutId
 import dev.milic.simplebmi.ui.theme.CARD_ELEVATION
 import dev.milic.simplebmi.ui.theme.MEDIUM_PADDING
 import dev.milic.simplebmi.ui.theme.SMALL_PADDING
@@ -22,67 +24,66 @@ fun BmiSmallInputCard(
     title: String,
     result: Int = 0,
     onMinusButtonClicked: () -> Unit,
-    onPlusButtonClicked: () -> Unit
+    onPlusButtonClicked: () -> Unit,
+    id: String
 ) {
-    Card(
-        modifier = Modifier
-            .widthIn(
-                min = 160.dp,
-                max = 500.dp
-            ),
-        backgroundColor = MaterialTheme.colors.surface,
-        elevation = CARD_ELEVATION
-    ) {
-        Column(
+    ConstraintLayout {
+        Card(
+            backgroundColor = MaterialTheme.colors.surface,
+            elevation = CARD_ELEVATION,
             modifier = Modifier
-                .padding(all = MEDIUM_PADDING),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .layoutId(layoutId = id, "card")
         ) {
-            Text(
-                text = title,
-                style = TextStyle(
-                    fontSize = MaterialTheme.typography.subtitle2.fontSize,
-                    fontWeight = FontWeight(weight = 600)
-                )
-            )
-            Text(
-                text = result.toString(),
-                style = TextStyle(
-                    fontSize = MaterialTheme.typography.h3.fontSize,
-                    fontWeight = FontWeight(weight = 900)
-                )
-            )
-            BmiIndicator()
-            Row(
+            Column(
                 modifier = Modifier
-                    .widthIn(
-                        min = 50.dp,
-                        max = 300.dp
-                    )
-                    .padding(
-                        all = SMALL_PADDING
-                    ),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(all = MEDIUM_PADDING),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                BmiPlusOrMinusButton(
-                    icon = Icons.Filled.Remove,
-                    description = "Subtract",
-                    onButtonPressed = {
-                        onMinusButtonClicked()
-                    }
+                Text(
+                    text = title,
+                    style = TextStyle(
+                        fontSize = MaterialTheme.typography.subtitle2.fontSize,
+                        fontWeight = FontWeight(weight = 600)
+                    )
                 )
-                Spacer(
+                Text(
+                    text = result.toString(),
+                    style = TextStyle(
+                        fontSize = MaterialTheme.typography.h3.fontSize,
+                        fontWeight = FontWeight(weight = 900)
+                    )
+                )
+                BmiIndicator()
+                Row(
                     modifier = Modifier
-                        .width(16.dp)
-                )
-                BmiPlusOrMinusButton(
-                    icon = Icons.Filled.Add,
-                    description = "Add",
-                    onButtonPressed = {
-                        onPlusButtonClicked()
-                    }
-                )
+                        .padding(
+                            all = SMALL_PADDING
+                        ),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    BmiPlusOrMinusButton(
+                        icon = Icons.Filled.Remove,
+                        description = "Subtract",
+                        onButtonPressed = {
+                            onMinusButtonClicked()
+                        }
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .width(16.dp)
+                    )
+                    BmiPlusOrMinusButton(
+                        icon = Icons.Filled.Add,
+                        description = "Add",
+                        onButtonPressed = {
+                            onPlusButtonClicked()
+                        }
+                    )
+                }
             }
         }
     }
 }
+
+
+

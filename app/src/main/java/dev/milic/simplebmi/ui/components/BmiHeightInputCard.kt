@@ -40,12 +40,14 @@ fun BmiHeightInputCard(
                 )
             )
             Text(
-                text = "kg",
+                text = "cm",
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.caption.fontSize,
                     fontWeight = FontWeight(weight = 200)
                 )
             )
+            Text(text = result.toString())
+            
         }
     }
 }

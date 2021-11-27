@@ -8,12 +8,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
+import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.navigation.BmiScreens
 import dev.milic.simplebmi.ui.components.BmiHeightInputCard
@@ -21,10 +20,10 @@ import dev.milic.simplebmi.ui.components.BmiSideDrawer
 import dev.milic.simplebmi.ui.components.BmiSmallInputCard
 import dev.milic.simplebmi.ui.components.BmiTopAppbar
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
-import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 import kotlinx.coroutines.launch
 
+@ExperimentalComposeUiApi
 @Composable
 fun BmiCalculatorScreen(
     navController: NavHostController,
@@ -81,6 +80,7 @@ fun BmiCalculatorScreen(
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
+
                     BmiSmallInputCard(
                         title = "Age",
                         result = ageValue.value,
@@ -89,7 +89,8 @@ fun BmiCalculatorScreen(
                         },
                         onPlusButtonClicked = {
                             calculatorViewModel.increaseAge()
-                        }
+                        },
+                        id = "cardOne"
                     )
                     BmiSmallInputCard(
                         title = "Weight",
@@ -99,8 +100,10 @@ fun BmiCalculatorScreen(
                         },
                         onPlusButtonClicked = {
                             calculatorViewModel.increaseWeight()
-                        }
+                        },
+                        id = "cardTwo"
                     )
+
                 }
                 Row(
                     modifier = Modifier
@@ -116,6 +119,25 @@ fun BmiCalculatorScreen(
 
 
             }
+        }
+    }
+}
+
+
+private fun decoupledConstraints(): ConstraintSet {
+    return ConstraintSet {
+        val cardOne = createRefFor("cardOne")
+        val cardTwo = createRefFor("cardTwo")
+
+        constrain(cardOne) {
+            top.linkTo(parent.top)
+            start.linkTo(parent.start)
+            end.linkTo(cardTwo.start)
+        }
+        constrain(cardTwo) {
+            top.linkTo(parent.top)
+            start.linkTo(cardOne.end)
+            end.linkTo(parent.end)
         }
     }
 }

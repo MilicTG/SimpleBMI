@@ -2,8 +2,8 @@
 buildscript {
     ext {
         kotlin_version = '1.5.31'
-        compose_version = '1.1.0-beta02'
-        accompaist_version = '0.21.0-beta'
+        compose_version = '1.1.0-beta03'
+        accompaist_version = '0.21.3-beta'
     }
     repositories {
         google()
