@@ -1,26 +1,31 @@
 package dev.milic.simplebmi.ui.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Slider
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import dev.milic.simplebmi.ui.theme.CARD_ELEVATION
 import dev.milic.simplebmi.ui.theme.MEDIUM_PADDING
+import dev.milic.simplebmi.ui.theme.TINY_PADDING
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 
 @Composable
 fun BmiHeightInputCard(
     result: Int = 0,
     onValueChanged: (Int) -> Unit
 ) {
+
+    var sliderPosition by remember { mutableStateOf(150f) }
+    val start = 50f
+    val end = 250f
+
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -46,8 +51,27 @@ fun BmiHeightInputCard(
                     fontWeight = FontWeight(weight = 200)
                 )
             )
-            Text(text = result.toString())
-            
+            Text(text = sliderPosition.roundToLong().toString())
+            Slider(
+                value = sliderPosition,
+                onValueChange = { sliderPosition = it },
+                valueRange = start..end,
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = TINY_PADDING),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "min: ${start.roundToInt()}",
+                    style = MaterialTheme.typography.caption
+                )
+                Text(
+                    text = "max: ${end.roundToInt()}",
+                    style = MaterialTheme.typography.caption
+                )
+            }
         }
     }
 }
