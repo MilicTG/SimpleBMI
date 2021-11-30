@@ -9,9 +9,7 @@ import dev.milic.simplebmi.R
 @Composable
 fun BmiTopAppbar(
     title: String = stringResource(R.string.simple_bmi),
-    navIcon: ImageVector,
     settingsIcon: ImageVector,
-    onNavIconClicked: () -> Unit,
     onSettingsIconClicked: () -> Unit
 ) {
     TopAppBar(
@@ -20,17 +18,7 @@ fun BmiTopAppbar(
                 text = title
             )
         },
-        backgroundColor = MaterialTheme.colors.surface,
-        navigationIcon = {
-            IconButton(
-                onClick = { onNavIconClicked() }
-            ) {
-                Icon(
-                    navIcon,
-                    contentDescription = ""
-                )
-            }
-        },
+        backgroundColor = MaterialTheme.colors.background,
         actions = {
             IconButton(
                 onClick = { onSettingsIconClicked() }
