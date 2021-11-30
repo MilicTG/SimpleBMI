@@ -2,6 +2,8 @@ package dev.milic.simplebmi.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
@@ -10,12 +12,13 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavHostController
+import dev.milic.simplebmi.R
 import dev.milic.simplebmi.navigation.BmiScreens
-import dev.milic.simplebmi.ui.components.BmiHeightInputCard
-import dev.milic.simplebmi.ui.components.BmiSmallInputCard
-import dev.milic.simplebmi.ui.components.BmiTopAppbar
+import dev.milic.simplebmi.ui.components.*
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 import kotlinx.coroutines.launch
@@ -34,6 +37,10 @@ fun BmiCalculatorScreen(
             drawerState.close()
         }
     }
+
+    val femaleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.female)
+    val maleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.male)
+
 
     val ageValue = calculatorViewModel.ageCounter.observeAsState(initial = 0)
     val weightValue = calculatorViewModel.weightCounter.observeAsState(initial = 0)
@@ -55,7 +62,8 @@ fun BmiCalculatorScreen(
                 .background(MaterialTheme.colors.background)
                 .padding(
                     all = LARGE_PADDING
-                ),
+                )
+                .verticalScroll(rememberScrollState()),
         ) {
             Row(
                 modifier = Modifier
@@ -96,8 +104,26 @@ fun BmiCalculatorScreen(
                     onValueChanged = {}
                 )
             }
-
-
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        vertical = LARGE_PADDING
+                    ),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                BmiGenderCard(
+                    image = femaleIcon,
+                    gender = "Female"
+                )
+                BmiGenderCard(
+                    image = maleIcon,
+                    gender = "Male"
+                )
+            }
+            BmiCalculateButton(
+                onClick = {}
+            )
         }
     }
 
