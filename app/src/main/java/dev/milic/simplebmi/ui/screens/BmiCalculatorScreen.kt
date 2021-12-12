@@ -19,7 +19,9 @@ import androidx.navigation.NavHostController
 import dev.milic.simplebmi.R
 import dev.milic.simplebmi.navigation.BmiScreens
 import dev.milic.simplebmi.ui.components.*
+import dev.milic.simplebmi.ui.theme.EXTRA_LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
+import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 import kotlinx.coroutines.launch
 
@@ -108,7 +110,8 @@ fun BmiCalculatorScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        vertical = LARGE_PADDING
+                        top = SMALL_PADDING,
+                        bottom = EXTRA_LARGE_PADDING
                     ),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {

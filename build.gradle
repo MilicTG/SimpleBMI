@@ -1,9 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        kotlin_version = '1.5.31'
-        compose_version = '1.1.0-beta03'
-        accompaist_version = '0.21.3-beta'
+        kotlin_version = '1.6.0'
+        compose_version = '1.1.0-beta04'
+        accompaist_version = '0.21.4-beta'
     }
     repositories {
         google()
@@ -11,7 +11,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.39.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
