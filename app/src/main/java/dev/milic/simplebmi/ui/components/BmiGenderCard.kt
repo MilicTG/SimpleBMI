@@ -1,9 +1,8 @@
 package dev.milic.simplebmi.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,11 +20,17 @@ import dev.milic.simplebmi.ui.theme.MEDIUM_PADDING
 @Composable
 fun BmiGenderCard(
     image: ImageBitmap,
-    gender: String?
+    gender: String?,
+    onCardClicked: () -> Unit
 ) {
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         elevation = CARD_ELEVATION,
+        modifier = Modifier
+            .wrapContentSize()
+            .clickable {
+                onCardClicked
+            }
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally

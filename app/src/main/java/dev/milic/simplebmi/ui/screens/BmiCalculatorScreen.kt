@@ -108,6 +108,7 @@ fun BmiCalculatorScreen(
             }
             Row(
                 modifier = Modifier
+                    .wrapContentSize()
                     .fillMaxWidth()
                     .padding(
                         top = SMALL_PADDING,
@@ -117,11 +118,13 @@ fun BmiCalculatorScreen(
             ) {
                 BmiGenderCard(
                     image = femaleIcon,
-                    gender = "Female"
+                    gender = "Female",
+                    onCardClicked = {}
                 )
                 BmiGenderCard(
                     image = maleIcon,
-                    gender = "Male"
+                    gender = "Male",
+                    onCardClicked = {}
                 )
             }
             BmiCalculateButton(
