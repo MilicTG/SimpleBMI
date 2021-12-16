@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
             BmiTheme {
                 navController = rememberAnimatedNavController()
                 SetupNavGraph(
+                    context = this,
                     navController = navController,
                     calculatorViewModel = calculatorViewModel
                 )

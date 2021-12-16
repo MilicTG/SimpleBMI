@@ -18,11 +18,10 @@ import kotlin.math.roundToLong
 
 @Composable
 fun BmiHeightInputCard(
-    result: Int = 0,
+    value: Int?,
     onValueChanged: (Int) -> Unit
 ) {
-
-    var sliderPosition by remember { mutableStateOf(150f) }
+    var sliderPosition by remember { mutableStateOf(value?.toFloat()) }
     val start = 50f
     val end = 250f
 
@@ -51,10 +50,13 @@ fun BmiHeightInputCard(
                     fontWeight = FontWeight(weight = 200)
                 )
             )
-            Text(text = sliderPosition.roundToLong().toString())
+            Text(text = sliderPosition?.roundToLong().toString())
             Slider(
-                value = sliderPosition,
-                onValueChange = { sliderPosition = it },
+                value = sliderPosition!!,
+                onValueChange = {
+                    onValueChanged(it.roundToInt())
+                    sliderPosition = it
+                },
                 valueRange = start..end,
             )
             Row(

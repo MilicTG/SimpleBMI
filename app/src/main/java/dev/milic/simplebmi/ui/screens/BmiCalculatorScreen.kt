@@ -1,5 +1,7 @@
 package dev.milic.simplebmi.ui.screens
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -26,12 +28,12 @@ import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 @ExperimentalComposeUiApi
 @Composable
 fun BmiCalculatorScreen(
+    context: Context,
     navController: NavHostController,
     calculatorViewModel: CalculatorViewModel
 ) {
     val femaleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.female)
     val maleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.male)
-
 
     val ageValue = calculatorViewModel.ageCounter.observeAsState(initial = 0)
     val weightValue = calculatorViewModel.weightCounter.observeAsState(initial = 0)
@@ -94,7 +96,10 @@ fun BmiCalculatorScreen(
                     )
             ) {
                 BmiHeightInputCard(
-                    onValueChanged = {}
+                    value = calculatorViewModel.heightCounter.value,
+                    onValueChanged = { height ->
+                        calculatorViewModel.updateHeightCounter(height)
+                    }
                 )
             }
             Row(
@@ -125,7 +130,13 @@ fun BmiCalculatorScreen(
                 )
             }
             BmiCalculateButton(
-                onClick = {}
+                onClick = {
+                    Toast.makeText(
+                        context,
+                        calculatorViewModel.calculateBMI().toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             )
         }
     }

@@ -1,5 +1,6 @@
 package dev.milic.simplebmi.navigation
 
+import android.content.Context
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavGraphBuilder
@@ -14,6 +15,7 @@ import dev.milic.simplebmi.util.Constants.HOME_GRAPH_ROUTE
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 fun NavGraphBuilder.homeNavGraph(
+    context: Context,
     navController: NavHostController,
     calculatorViewModel: CalculatorViewModel
 ) {
@@ -25,6 +27,7 @@ fun NavGraphBuilder.homeNavGraph(
             route = BmiScreens.Calculator.route
         ) {
             BmiCalculatorScreen(
+                context = context,
                 navController = navController,
                 calculatorViewModel = calculatorViewModel
             )

@@ -1,6 +1,7 @@
 package dev.milic.simplebmi.ui.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,9 @@ class CalculatorViewModel @Inject constructor(
 
     private val _weightCounter = MutableLiveData<Int>(70)
     val weightCounter: LiveData<Int> = _weightCounter
+
+    private val _heightCounter = MutableLiveData<Int>(  170)
+    val heightCounter: LiveData<Int> = _heightCounter
 
     private val _isFemaleIconSelected = MutableLiveData<Boolean>(true)
     val isFemaleIconSelected: LiveData<Boolean> = _isFemaleIconSelected
@@ -51,6 +55,10 @@ class CalculatorViewModel @Inject constructor(
         }
     }
 
+    fun updateHeightCounter(value: Int) {
+        _heightCounter.value = value
+    }
+
     fun changeGenderCardState() {
         if (_isFemaleIconSelected.value == true && _isMaleIconSelected.value == false) {
             _isFemaleIconSelected.value = false
@@ -59,5 +67,12 @@ class CalculatorViewModel @Inject constructor(
             _isFemaleIconSelected.value = true
             _isMaleIconSelected.value = false
         }
+    }
+
+    fun calculateBMI(): Double {
+        val heightInMeters = heightCounter.value?.toDouble()?.div(100)
+        val calculation = _weightCounter.value!!.div(heightInMeters!!.times(heightInMeters))
+        Log.d("ovde", heightCounter.value.toString())
+        return calculation
     }
 }

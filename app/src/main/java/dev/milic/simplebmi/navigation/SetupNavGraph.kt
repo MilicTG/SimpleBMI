@@ -1,5 +1,6 @@
 package dev.milic.simplebmi.navigation
 
+import android.content.Context
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -13,6 +14,7 @@ import dev.milic.simplebmi.util.Constants.SPLASH_GRAPH_ROUTE
 @ExperimentalAnimationApi
 @Composable
 fun SetupNavGraph(
+    context: Context,
     navController: NavHostController,
     calculatorViewModel: CalculatorViewModel
 ) {
@@ -25,6 +27,7 @@ fun SetupNavGraph(
             navController = navController
         )
         homeNavGraph(
+            context = context,
             navController = navController,
             calculatorViewModel = calculatorViewModel
         )
