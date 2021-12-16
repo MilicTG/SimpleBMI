@@ -21,15 +21,16 @@ import dev.milic.simplebmi.ui.theme.MEDIUM_PADDING
 fun BmiGenderCard(
     image: ImageBitmap,
     gender: String?,
-    onCardClicked: () -> Unit
+    onCardClicked: () -> Unit,
+    isSelected: Boolean? = false
 ) {
     Card(
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = if (isSelected == true) MaterialTheme.colors.primary else MaterialTheme.colors.surface,
         elevation = CARD_ELEVATION,
         modifier = Modifier
             .wrapContentSize()
             .clickable {
-                onCardClicked
+                onCardClicked()
             }
     ) {
         Column(

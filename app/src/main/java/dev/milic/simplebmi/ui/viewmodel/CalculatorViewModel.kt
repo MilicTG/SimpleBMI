@@ -19,6 +19,12 @@ class CalculatorViewModel @Inject constructor(
     private val _weightCounter = MutableLiveData<Int>(70)
     val weightCounter: LiveData<Int> = _weightCounter
 
+    private val _isFemaleIconSelected = MutableLiveData<Boolean>(true)
+    val isFemaleIconSelected: LiveData<Boolean> = _isFemaleIconSelected
+
+    private val _isMaleIconSelected = MutableLiveData<Boolean>(false)
+    val isMaleIconSelected: LiveData<Boolean> = _isMaleIconSelected
+
     fun increaseAge() {
         _ageCounter.value?.let { age ->
             if (age in 1..999) {
@@ -42,6 +48,16 @@ class CalculatorViewModel @Inject constructor(
     fun decreaseWeight() {
         _weightCounter.value?.let { weight ->
             _weightCounter.value = weight - 1
+        }
+    }
+
+    fun changeGenderCardState() {
+        if (_isFemaleIconSelected.value == true && _isMaleIconSelected.value == false) {
+            _isFemaleIconSelected.value = false
+            _isMaleIconSelected.value = true
+        } else if (_isFemaleIconSelected.value == false && _isMaleIconSelected.value == true) {
+            _isFemaleIconSelected.value = true
+            _isMaleIconSelected.value = false
         }
     }
 }

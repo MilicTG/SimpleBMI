@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -23,7 +22,6 @@ import dev.milic.simplebmi.ui.theme.EXTRA_LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
-import kotlinx.coroutines.launch
 
 @ExperimentalComposeUiApi
 @Composable
@@ -31,15 +29,6 @@ fun BmiCalculatorScreen(
     navController: NavHostController,
     calculatorViewModel: CalculatorViewModel
 ) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-
-    val closeDrawer = {
-        scope.launch {
-            drawerState.close()
-        }
-    }
-
     val femaleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.female)
     val maleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.male)
 
@@ -47,13 +36,15 @@ fun BmiCalculatorScreen(
     val ageValue = calculatorViewModel.ageCounter.observeAsState(initial = 0)
     val weightValue = calculatorViewModel.weightCounter.observeAsState(initial = 0)
 
+    val isFemaleIconSelected = calculatorViewModel.isFemaleIconSelected.observeAsState()
+    val isMaleIconSelected = calculatorViewModel.isMaleIconSelected.observeAsState()
+
     Scaffold(
         topBar = {
             BmiTopAppbar(
                 settingsIcon = Icons.Filled.Settings,
                 onSettingsIconClicked = {
                     navController.navigate(BmiScreens.Settings.route)
-                    closeDrawer()
                 }
             )
         }
@@ -119,12 +110,18 @@ fun BmiCalculatorScreen(
                 BmiGenderCard(
                     image = femaleIcon,
                     gender = "Female",
-                    onCardClicked = {}
+                    onCardClicked = {
+                        calculatorViewModel.changeGenderCardState()
+                    },
+                    isSelected = isFemaleIconSelected.value
                 )
                 BmiGenderCard(
                     image = maleIcon,
                     gender = "Male",
-                    onCardClicked = {}
+                    onCardClicked = {
+                        calculatorViewModel.changeGenderCardState()
+                    },
+                    isSelected = isMaleIconSelected.value
                 )
             }
             BmiCalculateButton(
