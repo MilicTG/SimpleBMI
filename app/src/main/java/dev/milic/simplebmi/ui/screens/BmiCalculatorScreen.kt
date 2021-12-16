@@ -1,7 +1,6 @@
 package dev.milic.simplebmi.ui.screens
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -11,6 +10,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -22,8 +23,8 @@ import dev.milic.simplebmi.navigation.BmiScreens
 import dev.milic.simplebmi.ui.components.*
 import dev.milic.simplebmi.ui.theme.EXTRA_LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
-import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
+import kotlin.math.roundToInt
 
 @ExperimentalComposeUiApi
 @Composable
@@ -40,6 +41,8 @@ fun BmiCalculatorScreen(
 
     val isFemaleIconSelected = calculatorViewModel.isFemaleIconSelected.observeAsState()
     val isMaleIconSelected = calculatorViewModel.isMaleIconSelected.observeAsState()
+
+    val openDialog = remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -107,7 +110,6 @@ fun BmiCalculatorScreen(
                     .wrapContentSize()
                     .fillMaxWidth()
                     .padding(
-                        top = SMALL_PADDING,
                         bottom = EXTRA_LARGE_PADDING
                     ),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -131,16 +133,19 @@ fun BmiCalculatorScreen(
             }
             BmiCalculateButton(
                 onClick = {
-                    Toast.makeText(
-                        context,
-                        calculatorViewModel.calculateBMI().toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    openDialog.value = true
                 }
             )
+            if (openDialog.value) {
+                BmiCalculationDialog(
+                    calculationResult = calculatorViewModel.calculateBMI().roundToInt(),
+                    closeDialog = {
+                        openDialog.value = false
+                    }
+                )
+            }
         }
     }
-
 }
 
 
