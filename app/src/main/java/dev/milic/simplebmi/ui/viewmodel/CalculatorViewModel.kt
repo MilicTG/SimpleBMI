@@ -19,7 +19,7 @@ class CalculatorViewModel @Inject constructor(
     private val _weightCounter = MutableLiveData<Int>(70)
     val weightCounter: LiveData<Int> = _weightCounter
 
-    private val _heightCounter = MutableLiveData<Int>(  150)
+    private val _heightCounter = MutableLiveData<Int>(150)
     val heightCounter: LiveData<Int> = _heightCounter
 
     private val _isFemaleIconSelected = MutableLiveData<Boolean>(true)
@@ -70,6 +70,9 @@ class CalculatorViewModel @Inject constructor(
 
     fun calculateBMI(): Double {
         val heightInMeters = heightCounter.value?.toDouble()?.div(100)
-        return _weightCounter.value!!.div(heightInMeters!!.times(heightInMeters))
+        return (_weightCounter.value!!.div(
+            heightCounter.value!!.toDouble().times(heightCounter.value!!.toDouble())
+        ))
+            .times(10000)
     }
 }

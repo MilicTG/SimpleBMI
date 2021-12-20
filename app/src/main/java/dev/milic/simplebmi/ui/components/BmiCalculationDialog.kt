@@ -16,11 +16,11 @@ fun BmiCalculationDialog(
         },
         title = {
             Text(
-                text = "Your BMI calculation is $calculationResult"
+                text = "Your BMI is $calculationResult"
             )
         },
         text = {
-            Text(text = "Severe Thinness < 16\nModerate Thinness 16 - 17\nMild Thinness 17 - 19\nNormal 19 - 25\nOverweight 25 - 30\nObese Class I 30 - 35\nObese Class II 35 - 40\nObese Class III > 40")
+            Text(text = "You are in ${calculateWeightRange(calculationResult)} range.\n\nBMI weight ranges\n\nLess than 19 = Underweight\nBetween 19 - 25 = Healthy Weight\nBetween 25 - 30 = Overweight\nOver 30 = Obese\n")
         },
         confirmButton = {
             Button(
@@ -34,4 +34,22 @@ fun BmiCalculationDialog(
             }
         }
     )
+}
+
+private fun calculateWeightRange(result: Int): String {
+    return when {
+        result in 0..19 -> {
+            "underweight"
+        }
+        result in 20..24 -> {
+            "healthy weight"
+        }
+        result in 25..30 -> {
+            "overweight"
+        }
+        result > 30 -> {
+            "obese"
+        }
+        else -> "result not valid"
+    }
 }
