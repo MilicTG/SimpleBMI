@@ -2,4 +2,6 @@
     <string name="app_name">Simple BMI</string>
     <string name="saved_calculations">Saved calculations</string>
     <string name="simple_bmi">Simple BMI</string>
+    <string name="settings">Settings</string>
+
 </resources>
