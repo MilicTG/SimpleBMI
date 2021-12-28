@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 
@@ -79,7 +80,7 @@ fun BmiSettingsDialog(
                 Text(
                     text = "Save",
                     style = TextStyle(
-                        color = MaterialTheme.colors.onSurface
+                        color = Color.White
                     )
                 )
             }

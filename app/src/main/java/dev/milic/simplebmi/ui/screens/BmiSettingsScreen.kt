@@ -96,7 +96,7 @@ fun BmiSettingsScreen(
             if (openAboutAppDialog.value) {
                 BmiAboutAppDialog(
                     closeDialog = {
-                        openThemeDialog.value = false
+                        openAboutAppDialog.value = false
                     }
                 )
             }
