@@ -10,4 +10,6 @@ object Constants {
 
     //misc
     const val SPLASH_SCREEN_DELAY = 1000L
+    const val DEV_NAME = "Ivan Milic"
+    const val DEV_EMAIL = "milic.tg@gmail.com"
 }

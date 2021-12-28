@@ -1,23 +1,19 @@
 package dev.milic.simplebmi.ui.components
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.RadioButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
-import dev.milic.simplebmi.ui.theme.SMALL_PADDING
+
 
 @Composable
 fun BmiSettingsDialog(
@@ -52,8 +48,7 @@ fun BmiSettingsDialog(
                                 onClick = {
                                     onOptionSelected(text)
                                 }
-                            )
-                            .padding(horizontal = SMALL_PADDING),
+                            ),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
@@ -82,7 +77,10 @@ fun BmiSettingsDialog(
                     .fillMaxWidth(),
             ) {
                 Text(
-                    text = "Save"
+                    text = "Save",
+                    style = TextStyle(
+                        color = MaterialTheme.colors.onSurface
+                    )
                 )
             }
         }
