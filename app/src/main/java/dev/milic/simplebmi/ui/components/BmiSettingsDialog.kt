@@ -21,11 +21,12 @@ fun BmiSettingsDialog(
     dialogTitle: String,
     settingsTextOne: String,
     settingsTextTwo: String,
+    selectedSetting: Int,
     onSelectedSetting: (String) -> Unit,
     closeDialog: () -> Unit
 ) {
     val radioOptions = listOf(settingsTextOne, settingsTextTwo)
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[1]) }
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[selectedSetting]) }
 
 
     AlertDialog(

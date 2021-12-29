@@ -9,6 +9,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 import dev.milic.simplebmi.util.Constants.ROOT_GRAPH_ROUTE
 import dev.milic.simplebmi.util.Constants.SPLASH_GRAPH_ROUTE
+import dev.milic.simplebmi.util.DataStoreManager
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
@@ -16,7 +17,8 @@ import dev.milic.simplebmi.util.Constants.SPLASH_GRAPH_ROUTE
 fun SetupNavGraph(
     context: Context,
     navController: NavHostController,
-    calculatorViewModel: CalculatorViewModel
+    calculatorViewModel: CalculatorViewModel,
+    dataStoreManager: DataStoreManager
 ) {
     AnimatedNavHost(
         navController = navController,
@@ -29,7 +31,8 @@ fun SetupNavGraph(
         homeNavGraph(
             context = context,
             navController = navController,
-            calculatorViewModel = calculatorViewModel
+            calculatorViewModel = calculatorViewModel,
+            dataStoreManager = dataStoreManager
         )
     }
 }

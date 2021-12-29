@@ -21,10 +21,14 @@ import dev.milic.simplebmi.ui.components.BmiSettingsAppbar
 import dev.milic.simplebmi.ui.components.BmiSettingsDialog
 import dev.milic.simplebmi.ui.components.BmiSettingsOptionsRow
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
+import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
+import dev.milic.simplebmi.util.DataStoreManager
 
 @Composable
 fun BmiSettingsScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    calculatorViewModel: CalculatorViewModel,
+    dataStoreManager: DataStoreManager
 ) {
 
     val openUnitDialog = remember { mutableStateOf(false) }
@@ -74,6 +78,7 @@ fun BmiSettingsScreen(
                     dialogTitle = "Choose your units",
                     settingsTextOne = "Metric",
                     settingsTextTwo = "Imperial",
+                    selectedSetting = 0,
                     onSelectedSetting = {},
                     closeDialog = {
                         openUnitDialog.value = false
@@ -86,6 +91,7 @@ fun BmiSettingsScreen(
                     dialogTitle = "Choose your theme",
                     settingsTextOne = "Light",
                     settingsTextTwo = "Dark",
+                    selectedSetting = 0,
                     onSelectedSetting = {},
                     closeDialog = {
                         openThemeDialog.value = false
