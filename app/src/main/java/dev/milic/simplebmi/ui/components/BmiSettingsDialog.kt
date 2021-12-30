@@ -74,6 +74,7 @@ fun BmiSettingsDialog(
             Button(
                 onClick = {
                     closeDialog()
+                    onSelectedSetting(selectedOption)
                 },
                 modifier = Modifier
                     .fillMaxWidth(),

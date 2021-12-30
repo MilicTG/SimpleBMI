@@ -10,9 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Draw
 import androidx.compose.material.icons.outlined.Smartphone
 import androidx.compose.material.icons.outlined.Thermostat
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.navigation.BmiScreens
@@ -22,18 +20,19 @@ import dev.milic.simplebmi.ui.components.BmiSettingsDialog
 import dev.milic.simplebmi.ui.components.BmiSettingsOptionsRow
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
-import dev.milic.simplebmi.util.DataStoreManager
+import kotlinx.coroutines.*
 
+@DelicateCoroutinesApi
 @Composable
 fun BmiSettingsScreen(
     navController: NavHostController,
     calculatorViewModel: CalculatorViewModel,
-    dataStoreManager: DataStoreManager
 ) {
 
     val openUnitDialog = remember { mutableStateOf(false) }
     val openThemeDialog = remember { mutableStateOf(false) }
     val openAboutAppDialog = remember { mutableStateOf(false) }
+    val unitChecked by calculatorViewModel.unitChecked.collectAsState(initial = 0)
 
     Scaffold(
         topBar = {
@@ -78,8 +77,10 @@ fun BmiSettingsScreen(
                     dialogTitle = "Choose your units",
                     settingsTextOne = "Metric",
                     settingsTextTwo = "Imperial",
-                    selectedSetting = 0,
-                    onSelectedSetting = {},
+                    selectedSetting = unitChecked,
+                    onSelectedSetting = {
+                        calculatorViewModel.saveSelectedUnit(it)
+                    },
                     closeDialog = {
                         openUnitDialog.value = false
                     }

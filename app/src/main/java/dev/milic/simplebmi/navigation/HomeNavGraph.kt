@@ -11,7 +11,6 @@ import dev.milic.simplebmi.ui.screens.BmiCalculatorScreen
 import dev.milic.simplebmi.ui.screens.BmiSettingsScreen
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
 import dev.milic.simplebmi.util.Constants.HOME_GRAPH_ROUTE
-import dev.milic.simplebmi.util.DataStoreManager
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
@@ -19,7 +18,6 @@ fun NavGraphBuilder.homeNavGraph(
     context: Context,
     navController: NavHostController,
     calculatorViewModel: CalculatorViewModel,
-    dataStoreManager: DataStoreManager
 ) {
     navigation(
         startDestination = BmiScreens.Calculator.route,
@@ -40,7 +38,6 @@ fun NavGraphBuilder.homeNavGraph(
             BmiSettingsScreen(
                 navController = navController,
                 calculatorViewModel = calculatorViewModel,
-                dataStoreManager = dataStoreManager
             )
         }
     }

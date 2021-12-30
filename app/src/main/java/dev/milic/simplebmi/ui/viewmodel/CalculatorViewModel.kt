@@ -1,17 +1,27 @@
 package dev.milic.simplebmi.ui.viewmodel
 
 import android.content.Context
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dev.milic.simplebmi.util.DataStoreManager
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@DelicateCoroutinesApi
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
     @ApplicationContext context: Context
 ) : ViewModel() {
+
+    private val dataStoreManager: DataStoreManager = DataStoreManager(context = context)
 
     private val _ageCounter = MutableLiveData<Int>(20)
     val ageCounter: LiveData<Int> = _ageCounter
@@ -27,6 +37,8 @@ class CalculatorViewModel @Inject constructor(
 
     private val _isMaleIconSelected = MutableLiveData<Boolean>(false)
     val isMaleIconSelected: LiveData<Boolean> = _isMaleIconSelected
+
+    val unitChecked = dataStoreManager.getSelectedUnit()
 
     fun increaseAge() {
         _ageCounter.value?.let { age ->
@@ -69,10 +81,22 @@ class CalculatorViewModel @Inject constructor(
     }
 
     fun calculateBMI(): Double {
-        val heightInMeters = heightCounter.value?.toDouble()?.div(100)
         return (_weightCounter.value!!.div(
             heightCounter.value!!.toDouble().times(heightCounter.value!!.toDouble())
         ))
             .times(10000)
+    }
+
+    fun saveSelectedUnit(unit: String){
+        when (unit){
+            "Metric" -> saveToPreferences(pref = 0)
+            "Imperial" -> saveToPreferences(pref = 1)
+        }
+    }
+
+    private fun saveToPreferences(pref: Int){
+        GlobalScope.launch(Dispatchers.IO) {
+            dataStoreManager.safeSelectedUnit(key = pref)
+        }
     }
 }

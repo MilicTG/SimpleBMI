@@ -23,7 +23,7 @@ class DataStoreManager(val context: Context) {
         }
     }
 
-    suspend fun getSelectedUnit() = context.dataStore.data.map { unit ->
+     fun getSelectedUnit() = context.dataStore.data.map { unit ->
         unit[SELECTED_UNIT] ?: 0
     }
 

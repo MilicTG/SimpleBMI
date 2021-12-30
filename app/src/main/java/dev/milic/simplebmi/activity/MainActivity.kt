@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.milic.simplebmi.navigation.SetupNavGraph
 import dev.milic.simplebmi.ui.theme.BmiTheme
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
-import dev.milic.simplebmi.util.DataStoreManager
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
@@ -20,13 +19,11 @@ import dev.milic.simplebmi.util.DataStoreManager
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
-    private lateinit var dataStoreManager: DataStoreManager
 
     private val calculatorViewModel: CalculatorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataStoreManager = DataStoreManager(this@MainActivity)
 
         setContent {
             BmiTheme {
@@ -35,7 +32,6 @@ class MainActivity : ComponentActivity() {
                     context = this,
                     navController = navController,
                     calculatorViewModel = calculatorViewModel,
-                    dataStoreManager = dataStoreManager
                 )
             }
         }
