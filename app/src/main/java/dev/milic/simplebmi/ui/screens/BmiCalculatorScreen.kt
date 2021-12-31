@@ -24,8 +24,10 @@ import dev.milic.simplebmi.ui.components.*
 import dev.milic.simplebmi.ui.theme.EXTRA_LARGE_PADDING
 import dev.milic.simplebmi.ui.theme.LARGE_PADDING
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlin.math.roundToInt
 
+@DelicateCoroutinesApi
 @ExperimentalComposeUiApi
 @Composable
 fun BmiCalculatorScreen(

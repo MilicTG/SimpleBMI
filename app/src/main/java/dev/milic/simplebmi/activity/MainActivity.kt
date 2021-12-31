@@ -12,7 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.milic.simplebmi.navigation.SetupNavGraph
 import dev.milic.simplebmi.ui.theme.BmiTheme
 import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@DelicateCoroutinesApi
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
