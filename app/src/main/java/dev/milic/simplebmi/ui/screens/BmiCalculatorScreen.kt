@@ -16,6 +16,8 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.R
@@ -71,6 +73,8 @@ fun BmiCalculatorScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 BmiSmallInputCard(
+                    modifier = Modifier
+                        .weight(1.0f, true),
                     title = "Age",
                     result = ageValue.value,
                     onMinusButtonClicked = {
@@ -82,7 +86,9 @@ fun BmiCalculatorScreen(
                     id = "cardOne"
                 )
                 BmiSmallInputCard(
-                    title = "Weight",
+                    modifier = Modifier
+                        .weight(1f, true)
+,                    title = "Weight",
                     result = weightValue.value,
                     onMinusButtonClicked = {
                         calculatorViewModel.decreaseWeight()

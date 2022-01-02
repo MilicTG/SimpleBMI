@@ -14,13 +14,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.layoutId
 import dev.milic.simplebmi.ui.theme.CARD_ELEVATION
 import dev.milic.simplebmi.ui.theme.MEDIUM_PADDING
 import dev.milic.simplebmi.ui.theme.SMALL_PADDING
 
 @Composable
 fun BmiSmallInputCard(
+    modifier: Modifier,
     title: String,
     result: Int = 0,
     onMinusButtonClicked: () -> Unit,
@@ -31,8 +31,7 @@ fun BmiSmallInputCard(
         Card(
             backgroundColor = MaterialTheme.colors.surface,
             elevation = CARD_ELEVATION,
-            modifier = Modifier
-                .layoutId(layoutId = id, "card")
+            modifier = modifier
         ) {
             Column(
                 modifier = Modifier
