@@ -9,9 +9,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.milic.simplebmi.navigation.SetupNavGraph
-import dev.milic.simplebmi.ui.theme.BmiTheme
-import dev.milic.simplebmi.ui.viewmodel.CalculatorViewModel
+import dev.milic.simplebmi.presentation.navigation.SetupNavGraph
+import dev.milic.simplebmi.presentation.theme.BmiTheme
+import dev.milic.simplebmi.presentation.viewmodel.CalculatorViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @DelicateCoroutinesApi
