@@ -1,25 +1,24 @@
 package dev.milic.simplebmi.presentation.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.milic.simplebmi.domain.util.DataStoreManager
+import dev.milic.simplebmi.domain.use_cases.UseCases
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @DelicateCoroutinesApi
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
-    @ApplicationContext context: Context
+    private val useCases: UseCases
 ) : ViewModel() {
-
-    private val dataStoreManager: DataStoreManager = DataStoreManager(context = context)
 
     private val _ageCounter = MutableLiveData<Int>(20)
     val ageCounter: LiveData<Int> = _ageCounter
@@ -36,7 +35,15 @@ class CalculatorViewModel @Inject constructor(
     private val _isMaleIconSelected = MutableLiveData<Boolean>(false)
     val isMaleIconSelected: LiveData<Boolean> = _isMaleIconSelected
 
-    val unitChecked = dataStoreManager.getSelectedUnit()
+    private val _unitSelectedState = MutableStateFlow(value = 0)
+    val unitSelectedState: StateFlow<Int> = _unitSelectedState
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            _unitSelectedState.value =
+                useCases.readUnitRadioStateUseCase().stateIn(viewModelScope).value
+        }
+    }
 
     fun increaseAge() {
         _ageCounter.value?.let { age ->
@@ -85,16 +92,12 @@ class CalculatorViewModel @Inject constructor(
             .times(10000)
     }
 
-    fun saveSelectedUnit(unit: String){
-        when (unit){
-            "Metric" -> saveToPreferences(pref = 0)
-            "Imperial" -> saveToPreferences(pref = 1)
-        }
-    }
-
-    private fun saveToPreferences(pref: Int){
-        GlobalScope.launch(Dispatchers.IO) {
-            dataStoreManager.safeSelectedUnit(key = pref)
+    fun saveUnitRadioSelectorState(selectedUnit: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (selectedUnit) {
+                "Metric" -> useCases.saveUnitRadioStateUseCase(selected = 0)
+                "Imperial" -> useCases.saveUnitRadioStateUseCase(selected = 1)
+            }
         }
     }
 }

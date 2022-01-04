@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Smartphone
 import androidx.compose.material.icons.outlined.Thermostat
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.presentation.navigation.BmiScreens
 import dev.milic.simplebmi.presentation.components.BmiAboutAppDialog
@@ -26,13 +27,13 @@ import kotlinx.coroutines.*
 @Composable
 fun BmiSettingsScreen(
     navController: NavHostController,
-    calculatorViewModel: CalculatorViewModel,
+    calculatorViewModel: CalculatorViewModel = hiltViewModel()
 ) {
 
     val openUnitDialog = remember { mutableStateOf(false) }
     val openThemeDialog = remember { mutableStateOf(false) }
     val openAboutAppDialog = remember { mutableStateOf(false) }
-    val unitChecked by calculatorViewModel.unitChecked.collectAsState(initial = 0)
+    val unitChecked by calculatorViewModel.unitSelectedState.collectAsState()
 
     Scaffold(
         topBar = {
@@ -79,7 +80,7 @@ fun BmiSettingsScreen(
                     settingsTextTwo = "Imperial",
                     selectedSetting = unitChecked,
                     onSelectedSetting = {
-                        calculatorViewModel.saveSelectedUnit(it)
+                        calculatorViewModel.saveUnitRadioSelectorState(it)
                     },
                     closeDialog = {
                         openUnitDialog.value = false

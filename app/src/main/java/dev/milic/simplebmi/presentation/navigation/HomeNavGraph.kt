@@ -15,9 +15,7 @@ import dev.milic.simplebmi.domain.util.Constants.HOME_GRAPH_ROUTE
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 fun NavGraphBuilder.homeNavGraph(
-    context: Context,
     navController: NavHostController,
-    calculatorViewModel: CalculatorViewModel,
 ) {
     navigation(
         startDestination = BmiScreens.Calculator.route,
@@ -27,9 +25,7 @@ fun NavGraphBuilder.homeNavGraph(
             route = BmiScreens.Calculator.route
         ) {
             BmiCalculatorScreen(
-                context = context,
                 navController = navController,
-                calculatorViewModel = calculatorViewModel
             )
         }
         composable(
@@ -37,7 +33,6 @@ fun NavGraphBuilder.homeNavGraph(
         ) {
             BmiSettingsScreen(
                 navController = navController,
-                calculatorViewModel = calculatorViewModel,
             )
         }
     }

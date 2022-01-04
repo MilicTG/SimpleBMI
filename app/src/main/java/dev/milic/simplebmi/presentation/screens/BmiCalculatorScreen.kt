@@ -1,6 +1,5 @@
 package dev.milic.simplebmi.presentation.screens
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -17,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.imageResource
 import androidx.constraintlayout.compose.ConstraintSet
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import dev.milic.simplebmi.R
 import dev.milic.simplebmi.presentation.navigation.BmiScreens
@@ -31,9 +31,8 @@ import kotlin.math.roundToInt
 @ExperimentalComposeUiApi
 @Composable
 fun BmiCalculatorScreen(
-    context: Context,
     navController: NavHostController,
-    calculatorViewModel: CalculatorViewModel
+    calculatorViewModel: CalculatorViewModel = hiltViewModel()
 ) {
     val femaleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.female)
     val maleIcon: ImageBitmap = ImageBitmap.imageResource(R.drawable.male)
