@@ -92,11 +92,17 @@ class CalculatorViewModel @Inject constructor(
             .times(10000)
     }
 
-    fun saveUnitRadioSelectorState(selectedUnit: String) {
+    fun saveUnitRadioSelectorState(selectedUnit: String) {  
         viewModelScope.launch(Dispatchers.IO) {
             when (selectedUnit) {
-                "Metric" -> useCases.saveUnitRadioStateUseCase(selected = 0)
-                "Imperial" -> useCases.saveUnitRadioStateUseCase(selected = 1)
+                "Metric" -> {
+                    useCases.saveUnitRadioStateUseCase(selected = 0)
+                    _unitSelectedState.value = 0
+                }
+                "Imperial" -> {
+                    useCases.saveUnitRadioStateUseCase(selected = 1)
+                    _unitSelectedState.value = 1
+                }
             }
         }
     }

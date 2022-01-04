@@ -11,7 +11,6 @@ object Constants {
     //dataStore
     const val PREFERENCE_DATASTORE_KEY = "bmi_datastore_key"
     const val PREFERENCE_DATASTORE_UNIT_KEY = "bmi_datastore_unit_key"
-    const val BMI_DATASTORE = "bmi_datastore"
 
     //misc
     const val SPLASH_SCREEN_DELAY = 1000L
