@@ -7,9 +7,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Draw
 import androidx.compose.material.icons.outlined.Smartphone
-import androidx.compose.material.icons.outlined.Thermostat
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,11 +52,12 @@ fun BmiSettingsScreen(
                     .height(LARGE_PADDING)
             )
 
-            BmiSettingsOptionsRow(
-                rowTitle = "Change units",
-                icon = Icons.Outlined.Thermostat,
-                onRowClicked = { openUnitDialog.value = it }
-            )
+            //In Plan
+//            BmiSettingsOptionsRow(
+//                rowTitle = "Change units",
+//                icon = Icons.Outlined.Thermostat,
+//                onRowClicked = { openUnitDialog.value = it }
+//            )
 
             BmiSettingsOptionsRow(
                 rowTitle = "About app",
