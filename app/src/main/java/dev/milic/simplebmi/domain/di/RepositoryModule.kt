@@ -9,9 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import dev.milic.simplebmi.data.repository.DataStoreOperationsImpl
 import dev.milic.simplebmi.data.repository.DataStoreRadioUnitOperations
 import dev.milic.simplebmi.data.repository.Repository
-import dev.milic.simplebmi.domain.use_cases.ReadUnitRadioStateUseCase
-import dev.milic.simplebmi.domain.use_cases.SaveUnitRadioStateUseCase
-import dev.milic.simplebmi.domain.use_cases.UseCases
+import dev.milic.simplebmi.domain.use_cases.*
 import javax.inject.Singleton
 
 @Module

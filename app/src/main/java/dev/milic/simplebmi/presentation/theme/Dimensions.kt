@@ -10,4 +10,3 @@ val TINY_PADDING = 2.dp
 
 val CARD_ELEVATION = 8.dp
 
-val DRAWER_SPACER_SIZE = 8.dp

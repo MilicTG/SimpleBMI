@@ -20,14 +20,14 @@ class CalculatorViewModel @Inject constructor(
     private val useCases: UseCases
 ) : ViewModel() {
 
-    private val _ageCounter = MutableLiveData<Int>(20)
-    val ageCounter: LiveData<Int> = _ageCounter
+    private val _ageCounter = MutableLiveData(20.0)
+    val ageCounter: LiveData<Double> = _ageCounter
 
-    private val _weightCounter = MutableLiveData<Int>(70)
-    val weightCounter: LiveData<Int> = _weightCounter
+    private val _weightCounter = MutableLiveData(70.0)
+    val weightCounter: LiveData<Double> = _weightCounter
 
-    private val _heightCounter = MutableLiveData<Int>(150)
-    val heightCounter: LiveData<Int> = _heightCounter
+    private val _heightCounter = MutableLiveData(150.0)
+    val heightCounter: LiveData<Double> = _heightCounter
 
     private val _isFemaleIconSelected = MutableLiveData<Boolean>(true)
     val isFemaleIconSelected: LiveData<Boolean> = _isFemaleIconSelected
@@ -47,7 +47,7 @@ class CalculatorViewModel @Inject constructor(
 
     fun increaseAge() {
         _ageCounter.value?.let { age ->
-            if (age in 1..999) {
+            if (age in 1.0..999.0) {
                 _ageCounter.value = age + 1
             }
         }
@@ -72,7 +72,7 @@ class CalculatorViewModel @Inject constructor(
     }
 
     fun updateHeightCounter(value: Int) {
-        _heightCounter.value = value
+        _heightCounter.value = value.toDouble()
     }
 
     fun changeGenderCardState() {
@@ -92,7 +92,7 @@ class CalculatorViewModel @Inject constructor(
             .times(10000)
     }
 
-    fun saveUnitRadioSelectorState(selectedUnit: String) {  
+    fun saveUnitRadioSelectorState(selectedUnit: String) {
         viewModelScope.launch(Dispatchers.IO) {
             when (selectedUnit) {
                 "Metric" -> {

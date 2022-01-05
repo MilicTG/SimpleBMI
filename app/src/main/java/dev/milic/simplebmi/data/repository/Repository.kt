@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class Repository @Inject constructor(
-    private val dataStoreRadioUnitOperations: DataStoreRadioUnitOperations
+    private val dataStoreRadioUnitOperations: DataStoreRadioUnitOperations,
 ) {
 
     suspend fun saveRadioUnitButtonState(selected: Int) {

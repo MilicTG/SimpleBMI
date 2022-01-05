@@ -31,7 +31,6 @@ fun BmiSettingsScreen(
 ) {
 
     val openUnitDialog = remember { mutableStateOf(false) }
-    val openThemeDialog = remember { mutableStateOf(false) }
     val openAboutAppDialog = remember { mutableStateOf(false) }
     val unitChecked by calculatorViewModel.unitSelectedState.collectAsState()
 
@@ -62,12 +61,6 @@ fun BmiSettingsScreen(
             )
 
             BmiSettingsOptionsRow(
-                rowTitle = "Change theme",
-                icon = Icons.Outlined.Draw,
-                onRowClicked = { openThemeDialog.value = it }
-            )
-
-            BmiSettingsOptionsRow(
                 rowTitle = "About app",
                 icon = Icons.Outlined.Smartphone,
                 onRowClicked = { openAboutAppDialog.value = it }
@@ -84,19 +77,6 @@ fun BmiSettingsScreen(
                     },
                     closeDialog = {
                         openUnitDialog.value = false
-                    }
-                )
-            }
-
-            if (openThemeDialog.value) {
-                BmiSettingsDialog(
-                    dialogTitle = "Choose your theme",
-                    settingsTextOne = "Light",
-                    settingsTextTwo = "Dark",
-                    selectedSetting = 0,
-                    onSelectedSetting = {},
-                    closeDialog = {
-                        openThemeDialog.value = false
                     }
                 )
             }

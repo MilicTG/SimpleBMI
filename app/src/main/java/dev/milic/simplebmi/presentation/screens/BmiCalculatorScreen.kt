@@ -23,6 +23,7 @@ import dev.milic.simplebmi.presentation.navigation.BmiScreens
 import dev.milic.simplebmi.presentation.components.*
 import dev.milic.simplebmi.presentation.theme.EXTRA_LARGE_PADDING
 import dev.milic.simplebmi.presentation.theme.LARGE_PADDING
+import dev.milic.simplebmi.presentation.theme.SMALL_PADDING
 import dev.milic.simplebmi.presentation.viewmodel.CalculatorViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlin.math.roundToInt
@@ -60,20 +61,23 @@ fun BmiCalculatorScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colors.background)
                 .padding(
-                    all = LARGE_PADDING
+                    start = LARGE_PADDING,
+                    end = LARGE_PADDING,
+                    bottom = SMALL_PADDING
                 )
                 .verticalScroll(rememberScrollState()),
         ) {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(top = SMALL_PADDING),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 BmiSmallInputCard(
                     modifier = Modifier
                         .weight(1.0f, true),
                     title = "Age",
-                    result = ageValue.value,
+                    result = ageValue.value.toInt(),
                     onMinusButtonClicked = {
                         calculatorViewModel.decreaseAge()
                     },
@@ -84,9 +88,8 @@ fun BmiCalculatorScreen(
                 )
                 BmiSmallInputCard(
                     modifier = Modifier
-                        .weight(1f, true)
-,                    title = "Weight",
-                    result = weightValue.value,
+                        .weight(1f, true), title = "Weight",
+                    result = weightValue.value.toInt(),
                     onMinusButtonClicked = {
                         calculatorViewModel.decreaseWeight()
                     },
@@ -104,7 +107,7 @@ fun BmiCalculatorScreen(
                     )
             ) {
                 BmiHeightInputCard(
-                    value = calculatorViewModel.heightCounter.value,
+                    value = calculatorViewModel.heightCounter.value?.toInt(),
                     onValueChanged = { height ->
                         calculatorViewModel.updateHeightCounter(height)
                     }

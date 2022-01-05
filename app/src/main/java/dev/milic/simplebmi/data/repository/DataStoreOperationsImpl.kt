@@ -44,5 +44,4 @@ class DataStoreOperationsImpl(context: Context) : DataStoreRadioUnitOperations {
                 unitState
             }
     }
-
 }
